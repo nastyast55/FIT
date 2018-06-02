@@ -1,3 +1,8 @@
+/* 
+** Author: Anastasiia Stoika, xstoik00
+** Project: Lexical Analyzer
+*/
+
 #ifndef SCANNER_H
 #define SCANNER_H
 

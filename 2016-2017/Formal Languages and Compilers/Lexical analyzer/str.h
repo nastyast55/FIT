@@ -8,7 +8,7 @@
       Homa Patrik
       Kocnar David
       Zivcak Adam
-      Stoyka Anastasiya 
+      Stoika Anastasiia 
 *********************************************************/
 
 #ifndef STR_H

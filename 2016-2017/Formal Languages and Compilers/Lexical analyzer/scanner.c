@@ -1,6 +1,9 @@
+/* 
+** Author: Anastasiia Stoika, xstoik00
+** Project: Lexical Analyzer
+*/
+
 #include "scanner.h"
-
-
 
 //--------------------------------------------------------------  MAIN  ---------------------------------------------------------------------
 int main(int argc, char* argv[])

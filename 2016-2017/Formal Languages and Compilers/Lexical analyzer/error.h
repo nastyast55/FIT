@@ -1,3 +1,16 @@
+/*********************************************************
+  Predmet: IFJ / IAL
+  Nazev: Prekladac a interpret jazyka IFJ16
+  Varianta: a/2/I
+  Datum: 14.10. 2016
+  Autori: 
+      Volak Marek
+      Homa Patrik
+      Kocnar David
+      Zivcak Adam
+      Stoika Anastasiia 
+*********************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
