@@ -1,0 +1,37 @@
+Cílem lexikálního analyzátoru, neboli scanneru, je načítání znaků ze vstupního souboru se zdrojovým programem a rozpoznání typů jednotlivých lexémů. Lexikální analyzátor je implementován pomocí úplného deterministického konečného automatu ve funkci getNextToken(). Vstupním parametrem funkce je zdrojový
+soubor. Při volání funkce dochází ke zpracování souboru po částech a jako výsledek vrací ukazatel na strukturu s rozpoznaným typem tokenu a uloženými daty - řetězcem načteným po symbolu při procházení lexikálním analyzátorem. Struktura je následně zpracována a ověřena syntaktickou analýzou.
+
+Lexikální analyzátor se nestará o ukládání tokenů do tabulky symbolů. Důvodem tohoto je, že pro scanner není definováno, kdy má jaký token uložit. Modul je schopen rozpoznat celkem 40 typů tokenů, které jsou uloženy v specifikovaném výčtu. Důvodem tak velkého počtu je rozhodnutí rozeznávat jednotlivé operátory a klíčová slova lexikálním analyzátorem, namísto zobecnění typů do "typ operátor" či "typ klíčové slovo" a tak předcházet případným zbytečným komplikacím u syntaktické analýzy, která by musela následně provádět toto rozpoznání.Při načítání operátoru vrací typ, který přesně definuje o který operátor jde, například TYPE_OP_PLUS nebo TYPE_OP_MINUS apod. Každému klíčovému slovu je přiřazeno svoje konstantní číslo, reprezentující konkrétní typ. Například TYPE_KEY_ELSE. 
+
+Model konečného automatu je v souboru KA.png .
+
+
+-- Preklad a spousteni programu:
+
+Preklad: make
+Po prekladu se vytvori soubor ifj2016.
+
+Spousteni: 
+Testovaci soubor se spousti ve stejnem adresari s programem. 
+Priklad spusteni testovaciho souboru s operatory: ./ifj2016 test_operators.java
+
+Priklad vystupu: 
+
+	xstoik00@xstoik00:~/FIT/IFJ$ ./ifj2016 test_op.java
+	TYPE >> PLUS			DATA >> + 
+	TYPE >> MINUS			DATA >> - 
+	TYPE >> MULT			DATA >> * 
+	TYPE >> DIVIDE			DATA >> / 
+	TYPE >> LESS			DATA >> < 
+	TYPE >> GREATER			DATA >> > 
+	TYPE >> LESS_EQ			DATA >> <= 
+	TYPE >> GRT_EQ			DATA >> >= 
+	TYPE >> EQUAL			DATA >> == 
+	TYPE >> NOT_EQ			DATA >> != 
+	TYPE >> ASSIGNM			DATA >> = 
+	TYPE >> SEMICOLON			DATA >> ; 
+	TYPE >> LEFT PARENTHESIS			DATA >> ( 
+	TYPE >> RIGHT PARENTHESIS			DATA >> ) 
+	------ Ukoncujem soubor --------
+
+V jednom testovacim souboru se nachazi vice testu, odkomentovat/zakomentovat pozadovany test.

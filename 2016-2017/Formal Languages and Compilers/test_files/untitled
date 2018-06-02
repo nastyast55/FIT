@@ -1,0 +1,37 @@
+//-------------------ERRORS-------------------------------
+/*
+typedef enum ERRORS{
+	ERR_OK = 0,
+	ERR_LEX = 1,
+	ERR_SYNT = 2,
+	ERR_SEM_UNDEF = 3,
+	ERR_SEM_TYP = 4,
+	ERR_SEM_OTHERS = 6,
+	ERR_NUM_INPT = 7,
+	ERR_VAR_UNINIT = 8,
+	ERR_DIVZERO = 9,
+	ERR_OTHERS = 10,
+	ERR_INTERN = 99
+}ErrorCode;
+
+typedef enum Error {
+    ERROR_UNDEFINED = 0,    
+    ERROR_FILE = 1,       
+    ERROR_MALLOC = 2,
+    ERROR_UNFINISHED_COM = 3,
+    ERROR_WRONGTYPE = 4,
+    ERROR_UNCLOSED_STR = 5
+} ErrorLex;
+
+const char *ERR_TABLE[20] = {
+    "Neznama chyba.",
+    "Chyba otevreni souboru.",
+    "Chyba alokace.",
+    "Nedokonceny komentar.",
+    "Unknown type.",
+    "Neuzavreny retezec."
+};
+
+*/
+//--------------------------------------------------------
+//void printErr(ErrorLex TypeError, ErrorCode ReturnCode);

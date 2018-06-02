@@ -1,0 +1,78 @@
+TYPE >> KEY_class 	 DATA >> class 
+TYPE >> SIMPLE_ID 	 DATA >> Main 
+TYPE >> LEVA ZAVORKA { 	 DATA >> { 
+TYPE >> KEY_static 	 DATA >> static 
+TYPE >> KEY_int 	 DATA >> int 
+TYPE >> SIMPLE_ID 	 DATA >> vys 
+TYPE >> ASSIGNM 	 DATA >> = 
+TYPE >> CISLO INT 	 DATA >> 5 
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> CISLO INT 	 DATA >> 3 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> KEY_static 	 DATA >> static 
+TYPE >> KEY_void 	 DATA >> void 
+TYPE >> SIMPLE_ID 	 DATA >> run 
+TYPE >> LEFT PARENTHESIS 	 DATA >> ( 
+TYPE >> RIGHT PARENTHESIS 	 DATA >> ) 
+TYPE >> LEVA ZAVORKA { 	 DATA >> { 
+TYPE >> KEY_int 	 DATA >> int 
+TYPE >> SIMPLE_ID 	 DATA >> x 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> SIMPLE_ID 	 DATA >> x 
+TYPE >> ASSIGNM 	 DATA >> = 
+TYPE >> FULL_ID 	 DATA >> ifj16.readInt 
+TYPE >> LEFT PARENTHESIS 	 DATA >> ( 
+TYPE >> RIGHT PARENTHESIS 	 DATA >> ) 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> FULL_ID 	 DATA >> ifj16.print 
+TYPE >> LEFT PARENTHESIS 	 DATA >> ( 
+TYPE >> STRING 	 DATA >> --Toto je x:  
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> SIMPLE_ID 	 DATA >> x 
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> STRING 	 DATA >> 
+ 
+TYPE >> RIGHT PARENTHESIS 	 DATA >> ) 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> FULL_ID 	 DATA >> ifj16.print 
+TYPE >> LEFT PARENTHESIS 	 DATA >> ( 
+TYPE >> STRING 	 DATA >> --Toto je vys:  
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> SIMPLE_ID 	 DATA >> vys 
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> STRING 	 DATA >> 
+ 
+TYPE >> RIGHT PARENTHESIS 	 DATA >> ) 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> KEY_String 	 DATA >> String 
+TYPE >> SIMPLE_ID 	 DATA >> a 
+TYPE >> ASSIGNM 	 DATA >> = 
+TYPE >> STRING 	 DATA >> ahoj 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> KEY_String 	 DATA >> String 
+TYPE >> SIMPLE_ID 	 DATA >> u 
+TYPE >> ASSIGNM 	 DATA >> = 
+TYPE >> STRING 	 DATA >> ijh 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> KEY_String 	 DATA >> String 
+TYPE >> SIMPLE_ID 	 DATA >> fin 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> SIMPLE_ID 	 DATA >> fin 
+TYPE >> ASSIGNM 	 DATA >> = 
+TYPE >> SIMPLE_ID 	 DATA >> x 
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> CISLO INT 	 DATA >> 2 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> FULL_ID 	 DATA >> ifj16.print 
+TYPE >> LEFT PARENTHESIS 	 DATA >> ( 
+TYPE >> STRING 	 DATA >> --Toto je fin:  
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> SIMPLE_ID 	 DATA >> fin 
+TYPE >> PLUS 	 DATA >> + 
+TYPE >> STRING 	 DATA >> 
+ 
+TYPE >> RIGHT PARENTHESIS 	 DATA >> ) 
+TYPE >> SEMICOLON 	 DATA >> ; 
+TYPE >> PRAVA ZAVORKA } 	 DATA >> } 
+TYPE >> PRAVA ZAVORKA } 	 DATA >> } 
+------ Ukoncujem soubor --------
