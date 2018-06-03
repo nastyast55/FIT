@@ -1,3 +1,21 @@
+Console application for offline network traffic analysis containing selected TCP/IP protocols.
+
+Podporované protokoly:
+Vrstva síťového rozhraní:
+  Ethernet
+  IEEE 802.1Q včetně IEEE 802.1ad
+Síťová vrstva:
+  IPv4 (pozor na fragmentaci)
+  IPv6 (pozor na rozšiřující hlavičky, fragmentaci řešit nemusíte)
+  ICMPv4
+  ICMPv6
+Transportní vrstva:
+  TCP
+  UDP
+Aplikační vrstva: nepodporována
+Fragmentace: nepodporována
+
+
 Usage:
 isashark [-h] [-a aggr-key] [-s sort-key] [-l limit] [-f filter-expression] file ...
   -h  Vypíše nápovědu a ukončí program.
