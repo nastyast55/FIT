@@ -1,0 +1,62 @@
+Usage:
+isashark [-h] [-a aggr-key] [-s sort-key] [-l limit] [-f filter-expression] file ...
+  -h  Vypíše nápovědu a ukončí program.
+  -a aggr-key  Zapnutí agregace podle klíče aggr-key, což může být srcmac značící zdrojovou MAC adresu, dstmac značící cílovou MAC adresu, srcip značící zdrojovou IP adresu, dstip značící cílovou IP adresu, srcport značící číslo zdrojového transportního portu nebo dstport značící číslo cílového transportního portu.
+  -s sort-key  Zapnutí řazení podle klíče sort-key, což může být packets (počet paketů) nebo bytes (počet bajtů). Řadit lze jak agregované tak i neagregované položky. Ve druhém případě je klíč packets bez efektu, protože všechny položky obsahují pouze jeden paket. Řadí se vždy sestupně.
+  -l limit  Nezáporné celé číslo v desítkové soustavě udávající limit počtu vypsaných položek.
+  -f filter-expression  Program zpracuje pouze pakety, které vyhovují filtru danému řetězcem filter-expression. Více informací hledejte v manuálové stránce pcap-filter(7).
+  file  Cesta k souboru ve formátu pcap (čitelný knihovnou libpcap). Možné je zadat jeden a více souborů
+
+
+
+Příklady použítí:
+
+$ ./isashark eth_ipv4_tcp.pcap 
+1: 1507020707944702 54 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv4: 192.168.1.1 192.168.1.2 64 | TCP: 54321 80 0 0 ......S.
+
+$ ./isashark eth_dot1q_ipv6_udp.pcap 
+1: 1507020992331332 66 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac 15 | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 80
+
+$ ./isashark eth_dot1ad_ipv4_icmpv4.pcap 
+1: 1507023901386641 50 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac 15 30 | IPv4: 192.168.1.1 192.168.1.2 64 | ICMPv4: 11 0 time exceeded time to live exceeded in transit
+
+$ ./isashark eth_ipv6_icmpv6.pcap 
+1: 1507024246062904 62 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv6: 2001:db8::1 2001:db8::2 64 | ICMPv6: 1 1 destination unreachable communication with destination administratively prohibited
+
+$ ./isashark mix.pcap 
+1: 1507025933348357 90 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv4: 192.168.1.1 192.168.1.2 64 | TCP: 54321 666 0 0 ......S.
+2: 1507025949455164 76 | Ethernet: 01:23:45:67:89:ac 01:23:45:67:89:ab | IPv4: 192.168.1.2 192.168.1.1 64 | TCP: 666 54321 0 0 ......S.
+3: 1507025950670040 85 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv4: 192.168.1.1 192.168.1.2 64 | TCP: 54321 666 0 0 ......S.
+4: 1507025951564182 85 | Ethernet: 01:23:45:67:89:ac 01:23:45:67:89:ab | IPv4: 192.168.1.2 192.168.1.1 64 | TCP: 666 54321 0 0 ......S.
+5: 1507025952857185 94 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv4: 192.168.1.1 192.168.1.2 64 | TCP: 54321 666 0 0 ......S.
+6: 1507025968692963 100 | Ethernet: 01:23:45:67:89:ad 01:23:45:67:89:ae | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 666
+7: 1507025988052635 67 | Ethernet: 01:23:45:67:89:ae 01:23:45:67:89:ad | IPv6: 2001:db8::2 2001:db8::1 64 | UDP: 666 54321
+8: 1507025990199610 111 | Ethernet: 01:23:45:67:89:ad 01:23:45:67:89:ae | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 666
+9: 1507025991143626 76 | Ethernet: 01:23:45:67:89:ae 01:23:45:67:89:ad | IPv6: 2001:db8::2 2001:db8::1 64 | UDP: 666 54321
+10: 1507025992127657 104 | Ethernet: 01:23:45:67:89:ad 01:23:45:67:89:ae | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 666
+
+Filtr:
+$ ./isashark -f "src host 2001:db8::1" mix.pcap 
+1: 1507025968692963 100 | Ethernet: 01:23:45:67:89:ad 01:23:45:67:89:ae | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 666
+2: 1507025990199610 111 | Ethernet: 01:23:45:67:89:ad 01:23:45:67:89:ae | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 666
+3: 1507025992127657 104 | Ethernet: 01:23:45:67:89:ad 01:23:45:67:89:ae | IPv6: 2001:db8::1 2001:db8::2 64 | UDP: 54321 666
+
+Limit:
+$ ./isashark -l 3 mix.pcap 
+1: 1507025933348357 90 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv4: 192.168.1.1 192.168.1.2 64 | TCP: 54321 666 0 0 ......S.
+2: 1507025949455164 76 | Ethernet: 01:23:45:67:89:ac 01:23:45:67:89:ab | IPv4: 192.168.1.2 192.168.1.1 64 | TCP: 666 54321 0 0 ......S.
+3: 1507025950670040 85 | Ethernet: 01:23:45:67:89:ab 01:23:45:67:89:ac | IPv4: 192.168.1.1 192.168.1.2 64 | TCP: 54321 666 0 0 ......S.
+
+Agregace:
+$ ./isashark -a srcip mix.pcap 
+2001:db8::2: 2 143
+2001:db8::1: 3 315
+192.168.1.1: 3 269
+192.168.1.2: 2 161
+
+Agregace a řazení:
+$ ./isashark -a srcip -s bytes mix.pcap 
+2001:db8::1: 3 315
+192.168.1.1: 3 269
+192.168.1.2: 2 161
+2001:db8::2: 2 143
