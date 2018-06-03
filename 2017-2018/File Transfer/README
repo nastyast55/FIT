@@ -1,0 +1,20 @@
+
+Client-server application for download/upload files from/to server with using BSD sockets, based on own application protocol. Concurrent server - server is able to serve more than one client at a time.
+
+Usage:
+after unpacking the archive compile project with using "make" command, the created application for server move to the new folder, such as "server".	 
+
+Run Server:
+./server -p port
+
+Run Client:
+./client -h host -p port [-r|-w] filename
+
+When you simultaneously send to a server the same named file by several clients, the file will be rewritten.
+
+For better testing and showing both current communication and data exchange, reports are kept informing about the new client connection to server, how much data was read from the file, how much was sent.
+
+The application does not support control in the situation when one client want to download a file that is currently being written to the server by another client. In this case, only uploaded part from another client will be save.
+
+Own application protocol is shown in applic_protocol.png file.
+

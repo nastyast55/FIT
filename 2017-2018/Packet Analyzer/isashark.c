@@ -1,3 +1,8 @@
+/*
+** Author: Anastasiia Stoika
+** Project: packet analyzer - isashark
+*/
+
 #define _BSD_SOURCE
 #define __FAVOR_BSD
 
