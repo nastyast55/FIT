@@ -1,4 +1,4 @@
-Client-server application for download/upload files from/to server with using BSD sockets, based on own application protocol.
+C / C ++ tool with using BSD sockets network library to query the DNS system. Performs the translation of domain names and IP addresses.
 
 Technology: C, C++, Linux
 
