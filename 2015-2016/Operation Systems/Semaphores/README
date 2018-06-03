@@ -1,0 +1,85 @@
+The child care synchronization problem. 
+
+Description: At a child care center, state regulations require that there is always
+one adult present for every three children. 
+** The puzzle is to write code for child threads and adult threads that enforces this
+** constraint in a critical section.
+
+Program arguments:
+      -A:  Number or persons generated process adult.
+           A > 0
+      -C:  Number of persons generated process child.
+           C > 0
+      -AGT: Maximum time (in milliseconds) to generate a new adult-process.
+           AGT >= 0 && AGT < 5001
+      -CGT: Maximum time (in milliseconds) to generate a new child-process.
+           CGT >= 0 && CGT < 5001
+      -AWT: Maximum time (in milliseconds) for which one adult-process is valid in the child-care center
+           AWT >= 0 && AWT < 5001
+      -CWT: Maximum time (in milliseconds) for which one child-process is valid in the child-care center;
+           CWT >= 0 && CWT < 5001
+      All argument are integers.
+
+Result of solved problem will output to file childCare.out .
+
+Examples:
+Experiment 1 (three adults and two children):
+	xstoik00@xstoik00: ./childCenter 3 2 0 0 0 0
+	1	: C 2	: started
+	2	: C 1	: started
+	3	: C 1	: waiting : 0 : 0
+	4	: A 3	: started
+	5	: A 3	: enter
+	6	: C 1	: enter
+	7	: C 1	: trying to leave
+	8	: C 1	: leave
+	9	: A 2	: started
+	10	: A 2	: enter
+	11	: A 2	: trying to leave
+	12	: A 2	: leave
+	13	: A 3	: trying to leave
+	14	: A 3	: leave
+	15	: C 2	: waiting : 0 : 0
+	16	: A 1	: started
+	17	: A 1	: enter
+	18	: A 1	: trying to leave
+	19	: A 1	: leave
+	20	: C 2	: enter
+	21	: C 2	: trying to leave
+	22	: C 2	: leave
+	23	: C 1	: finished
+	24	: A 2	: finished
+	25	: A 3	: finished
+	26	: C 2	: finished
+	27	: A 1	: finished
+
+Experiment 2 (two adults and five children):
+	xstoik00@xstoik00: ./childCenter 2 5 0 0 0 0
+	1	: C 2	: started
+	2	: C 1	: started
+	3	: C 1	: waiting : 0 : 0
+	4	: A 3	: started
+	5	: A 3	: enter
+	6	: C 1	: enter
+	7	: C 1	: trying to leave
+	8	: C 1	: leave
+	9	: A 2	: started
+	10	: A 2	: enter
+	11	: A 2	: trying to leave
+	12	: A 2	: leave
+	13	: A 3	: trying to leave
+	14	: A 3	: leave
+	15	: C 2	: waiting : 0 : 0
+	16	: A 1	: started
+	17	: A 1	: enter
+	18	: A 1	: trying to leave
+	19	: A 1	: leave
+	20	: C 2	: enter
+	21	: C 2	: trying to leave
+	22	: C 2	: leave
+	23	: C 1	: finished
+	24	: A 2	: finished
+	25	: A 3	: finished
+	26	: C 2	: finished
+	27	: A 1	: finished
+	

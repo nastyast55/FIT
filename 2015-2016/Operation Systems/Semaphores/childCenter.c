@@ -1,3 +1,12 @@
+/*
+** Author: Anastasiia Stoika
+** Synchronization problem: The child care problem
+** Description: At a child care center, state regulations require that there is always
+** one adult present for every three children.
+** The puzzle is to write code for child threads and adult threads that enforces this
+** constraint in a critical section.
+*/
+
 #include <semaphore.h>
 #include <sys/wait.h>
 #include <sys/ipc.h>
@@ -57,7 +66,18 @@ void printErr(Error TypeError){
 }
 
 void printHelp(){
-	printf("Napoveda bla bla.\n");
+	printf("Program arguments: \n");
+	printf("-A:  Number or persons generated process adult. A > 0\n");
+  printf("-C:  Number of persons generated process child. C > 0\n");
+  printf("-AGT: Adult generate time. Maximum time (in milliseconds) to generate a new adult-process.\n");
+  printf("\tAGT >= 0 && AGT < 5001\n");
+  printf("-CGT: Children generate time. Maximum time (in milliseconds) to generate a new child-process.\n");
+  printf("\tCGT >= 0 && CGT < 5001\n");
+  printf("-AWT: Maximum time (in milliseconds) for which one adult-process is valid in the child-care center\n");
+  printf("\tAWT >= 0 && AWT < 5001\n");
+  printf("-CWT: Maximum time (in milliseconds) for which one child-process is valid in the child-care center\n");
+  printf("\tCWT >= 0 && CWT < 5001\n");
+  printf("All argument are integers.");
 	return;
 }
 
@@ -133,8 +153,7 @@ typedef struct semaphore {
 } semaphores;
 
 int main_adult(int *akce_id, semaphores *sem, int proc_id, sParams *args, int *adults_sh, int *waiting_child, int *children_sh, FILE *OUTP, int *leaving_adult, int *count_process){
-	//int ad_id = *adults_sh++;   //fronta adultu ---> id
-	//int st = *akce_id++;
+
 	int n;
 
 // Adult process starts
@@ -159,11 +178,8 @@ int main_adult(int *akce_id, semaphores *sem, int proc_id, sParams *args, int *a
 	sem_post(sem->out);
 
 //-----------------------Enter-----------------------
-//	sem_wait(sem->pom_sem);
-
 		sem_wait(sem->pom_sem);
-		
-		//sem_wait(sem->wait_ch);
+
 		if(*waiting_child > 0){
 			n = (*waiting_child > 3) ? 3 : *waiting_child;
 
@@ -193,7 +209,6 @@ int main_adult(int *akce_id, semaphores *sem, int proc_id, sParams *args, int *a
 	sem_post(sem->out);
 
 	//Adults leaving
-	//sem_wait(sem->pom_sem);
 		//zustava-li dostatek dospelych pro deti v centru, po odchodu jednoho
 		if(*children_sh <= ((*adults_sh) - 1) * 3){
 			sem_wait(sem->adult_sem);
@@ -267,8 +282,6 @@ int main_child(int *akce_id, semaphores *sem, int child_id, sParams *args, int *
 	sem_post(sem->out);
 
 	//-----------------Child process enters-----------------
-	//sem_wait(sem->pom_sem);
-
 		if(*children_sh < ((*adults_sh) * 3)){
 			sem_wait(sem->out);
 			sem_wait(sem->child_sem);
@@ -286,8 +299,6 @@ int main_child(int *akce_id, semaphores *sem, int child_id, sParams *args, int *
 			//Child simuluje aktivitu v centru
 			if (args->CWT != 0) 
 				usleep(rand() % args->CWT);
-
-
 		}
 		else{
 			sem_wait(sem->out);
@@ -323,7 +334,6 @@ int main_child(int *akce_id, semaphores *sem, int child_id, sParams *args, int *
 
 	//----------------------CHILD IS LEAVING------------------------
 //po probuzeni snazi sa opustit centr
-
 	sem_wait(sem->out);
 	sem_wait(sem->akce_id_sem);
 	*akce_id += 1;
@@ -343,7 +353,7 @@ int main_child(int *akce_id, semaphores *sem, int child_id, sParams *args, int *
 	sem_post(sem->akce_id_sem);
 	sem_post(sem->child_sem);
 
-		//kdyz odchazi overuje frontu adultov cekajicich na vystup
+	//kdyz odchazi overuje frontu adultov cekajicich na vystup
 	if(*leaving_adult > 0){
 		if(*children_sh <= 3*(*adults_sh - 1)){
 			sem_wait(sem->leave_ad);
@@ -356,7 +366,6 @@ int main_child(int *akce_id, semaphores *sem, int child_id, sParams *args, int *
 			sem_post(sem->adultQueue_sem);
 			}
 		}
-
 //-----------------------------------------FINISH------------------------------------------------
 		*count_process += 1;
 		if(*count_process == (args->A + args->C))
@@ -611,11 +620,11 @@ int main(int argc, char *argv[])
   	sParams args; 
   	semaphores sem;                              
   	int err;
-  //Naplnit strukturu args vstupnimy argumenty
+  	
+  	//Naplnit strukturu args vstupnimy argumenty
   	get_args(&args, argc, argv);
 
-  	FILE *OUTP = fopen("proj2.out", "w");
-  	//OUTP = stdout;
+  	FILE *OUTP = fopen("childCenter.out", "w");
   	err = allocation(&sem, &args, OUTP);
   	
   	if(err != ERROR_OK){
