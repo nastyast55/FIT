@@ -1,5 +1,6 @@
 A Shell script analyzes directories and as output gives information about root directory, numbers of subdirectories and information about files (file extensions and calculated for every extension the size of largest file and average) in analyzed directory.
 
+
 Usage: dirstat [-i FILE_ERE] [DIR]
 Description: 
 1. DIR - analyzed directory. If DIR is not specified, the actual directory will be analyzed.
