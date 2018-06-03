@@ -1,0 +1,53 @@
+Application for creating, editing, saving and loading simple block diagrams with arithmetic 
+operations, with possibility to make a calculation after making (loading) the schema.
+
+Used technology: Java 8, JavaFX, IntelliJ IDEA, JUnit, SchemeBuilder
+
+**Description:
+1. Basic description:
+	- the application will allow to create, edit, save, and load block diagrams
+	- the created diagrams can be saved and loaded later
+	- the scheme is composed of blocks and interconnections between blocks
+2. Blocks:
+	- each block has defined input and output ports
+
+	- each port is connected to a type that is represented as a set of data 
+	  pairs Name-> value; the value will always be double
+
+	- the blocks can be connected only between the input and output port
+
+	- each block contains a calculation (formulas) that transform values from 
+	  input ports to output port values
+
+	- Block operations (kinds of blocks): 
+		➢ blockAdd - operation add
+		➢ blockDec - operation decrement
+		➢ blockInc - operation increment
+		➢ blockSub - operation substruct
+		➢ blockMul - operation multiply
+		➢ blockDiv - operation divide
+		➢ blockMod - operation modulo
+		➢ blockPow - operation power
+		➢ blockNot - operation negation
+		➢ blockValue - input point of a scheme (input value)
+	- Data types:
+		➢ double
+		➢ complex numbers 
+		(for complex numbers it is possible only 4 operations: add, substruct, multiply 
+		and divide)
+	
+3. Connection between blocks:
+	- data type is assigned automatically by associated interconnects ports
+	- should be the same data type for the whole schema
+
+4. Calculation
+	- After creating (or loading) the schema, it is posiible to make a calculation
+	- After loading diagram, it is possible to continue create loaded diagram and then 
+	  make a calculation
+	- Input values and their types will be filled in the "start" blocks - block VAL
+
+5. Other:
+	- Move the mouse over the each block to see the current status of the data, 
+	  or connection line between blocks.
+
+Running application: IntelliJ IDEA

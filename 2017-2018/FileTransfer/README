@@ -1,0 +1,18 @@
+Návrh vlastního aplikačního protokol realizující přenos souboru.
+Klient - server aplikace v C realizující čtení/zápis souborů z/na server. Server může obsluhovat více klientů zároven.
+
+
+Navod: po rozbaleni archivu udelat preklad pomoci make, vytvorenou serverovou aplikaci premistit do jine nove slozky, napr "server".
+
+Spusteni Serveru
+./server -p port
+
+Spusteni Klientu
+./client -h host -p port [-r|-w] filename
+
+Aplikace nepodporuje osetreni v situaci, kdyz jeden klient pozada stahnout subor, ktery soucasne s tim zapisuje na server druhy klient. V takovem pripade se ulozi jenom ta cast souboru ktera se stihla nahrat na server.
+
+Pri soucasnem odeslani na server stejne pojmenovaneho souboru nekolika klientami, soubor bude prepsan.
+
+Pro lepsi testovani a ukazku jak aktualne probiha komunikace a vymena dat, jsou ponechany vypisy informujici o novem pripojeni klienta, kolik dat bylo precteno ze souboru, kolik odeslano a na strane aplikace prijimajici soubor - kolik dat bylo zapsano.
+
